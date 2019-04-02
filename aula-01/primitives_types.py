@@ -64,6 +64,6 @@ class PrimitivesFunctionsSpec(unittest.TestCase):
             startswith
             endswith
 
-        Para informações sobre o funcionamento de cada umdelas visite o link: 
+        Para informações sobre o funcionamento de cada um visite o link: 
         https://docs.python.org/3.7/library/stdtypes.html#string-methods
         '''
