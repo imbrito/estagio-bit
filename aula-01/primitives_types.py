@@ -39,31 +39,30 @@ class PrimitivesFunctionsSpec(unittest.TestCase):
         self.assertTrue(bool({1}))
 
     def test_string_functions(self):
-        '''
-        Crie um caso de teste para cada um dos métodos abaixo. 
 
-        String Methods:
-            isnumeric
-            isalpha
-            isalnum
-            isdigit
-            isspace
-            istitle
-            isupper
-            islower
-            upper
-            lower
-            split
-            join
-            capitalize
-            swapcase
-            title
-            replace
-            format
-            zfill
-            startswith
-            endswith
-
-        Para informações sobre o funcionamento de cada um visite o link: 
-        https://docs.python.org/3.7/library/stdtypes.html#string-methods
-        '''
+        self.assertTrue('1'.isnumeric())
+        self.assertEqual(True ,'1'.isnumeric())
+        self.assertFalse('a'.isnumeric())
+        self.assertTrue('a'.isalpha())
+        self.assertFalse('1'.isalpha())
+        self.assertTrue('a1'.isalnum())
+        self.assertFalse('a-1'.isalnum())
+        self.assertTrue('100'.isdigit())
+        self.assertFalse('0xF'.isdigit())
+        self.assertFalse(' '.isdigit())
+        self.assertTrue(' '.isspace())
+        self.assertTrue('Python For Devs'.istitle())
+        self.assertTrue('PYTHON FOR DEVS'.isupper())
+        self.assertTrue('python for devs'.islower())
+        self.assertEqual('PYTHON FOR DEVS', 'Python For Devs'.upper())
+        self.assertEqual('python for devs', 'Python For Devs'.lower())
+        self.assertEqual(['Python', 'For', 'Devs'], 'Python For Devs'.split(' '))
+        self.assertEqual('Python For Devs', ' '.join(['Python', 'For', 'Devs']))
+        self.assertEqual('Python for devs', 'python for devs'.capitalize())
+        self.assertEqual('Python For Devs', 'python for devs'.title())
+        self.assertEqual('pYTHON fOR dEVS', 'Python For Devs'.swapcase())
+        self.assertEqual('Python-For-Devs', 'Python For Devs'.replace(' ','-'))
+        self.assertEqual('Python For Devs', 'Python For {}'.format('Devs'))
+        self.assertEqual('0001', '1'.zfill(4))
+        self.assertTrue('Python for Devs'.startswith('Python'))
+        self.assertTrue('Python for Devs'.endswith('Devs'))
