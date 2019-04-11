@@ -1,0 +1,2 @@
+{adapter: postgresql, database: estagio_bit, encoding: unicode, host: 127.0.0.1, password: toor,
+  pool: 5, port: 5432, username: root}

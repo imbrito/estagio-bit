@@ -1,0 +1,1 @@
+{"adapter": "postgresql", "encoding": "unicode", "database": "estagio_bit", "pool": 5, "username": "root", "password": "toor", "port": 5432, "host": "127.0.0.1"}

@@ -5,7 +5,7 @@ import os, yaml, json
 def read_file(filepath):
     with open(filepath, 'r') as stream:
         if filepath.endswith(".yml"):
-            data = yaml.load(stream, Loader=yaml.FullLoader)
+            data = yaml.load(stream)
         elif filepath.endswith(".json"):
             data = json.load(stream)
         stream.close()

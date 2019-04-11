@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from unittest import TestCase
-from environment import read_file
+from environment import read_file, write_database_file
 import os
 
 class EnvironmentSpec(TestCase):
@@ -58,5 +58,7 @@ class EnvironmentSpec(TestCase):
                 2) o atributo database, deverá ser escrito, concatenando a variável de ambiente correspondente e o environment;
                 3) escrever 1 (um) único caso de teste, capaz de validar a escrita de ambos os arquivos;
         """
-        pass
+        for end in [".yml",".json"]:
+            write_database_file("conf/database{}".format(end))
+            self.assertTrue(isinstance(read_file("conf/database{}".format(end)), dict))
         
