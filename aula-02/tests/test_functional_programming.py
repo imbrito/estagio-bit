@@ -56,4 +56,10 @@ class FunctionalProgrammingSpec(TestCase):
         self.assertEqual({0:1,1:1,2:2,3:6,4:24,5:120,6:720}, {x : factorial(x) for x in range(7)})
 
     def test_it_combinatorial_analysis(self):
-        pass
+        self.assertEqual([102,120,201,210], combinatorial_analysis(120))
+        self.assertEqual([102,120,201,210], combinatorial_analysis(102))
+        self.assertEqual([102,120,201,210], combinatorial_analysis(201))
+        self.assertEqual([102,120,201,210], combinatorial_analysis(210))
+        self.assertEqual([112,121,211], combinatorial_analysis(211))
+        self.assertEqual([112,121,211], combinatorial_analysis(121))
+        self.assertEqual([112,121,211], combinatorial_analysis(112))

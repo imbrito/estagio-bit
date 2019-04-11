@@ -16,4 +16,16 @@ def combinatorial_analysis(value):
     https://docs.python.org/3.7/library/itertools.html#itertools.permutations
 
     '''
-    pass
+    x = str(value)
+    y = list(x)
+    z = map(lambda x: ''.join(x), permutations(y, len(y)))
+    w = list(set(z))
+    
+    # sort combinations
+    k = list(filter(lambda x: not x.startswith('0'), w))
+    result = list(map(int, k))
+    # delete numbers starts with 0
+    # while(combinations[0].startswith('0')): combinations.pop(0)
+    
+    result.sort()
+    return result
