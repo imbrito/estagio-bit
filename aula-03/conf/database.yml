@@ -1,2 +1,27 @@
-{adapter: postgresql, database: estagio_bit, encoding: unicode, host: 127.0.0.1, password: toor,
-  pool: 5, port: 5432, username: root}
+development:
+  adapter: postgresql
+  database: estagio_bit_development
+  encoding: unicode
+  host: 127.0.0.1
+  password: toor
+  pool: 5
+  port: 5432
+  username: root
+production:
+  adapter: postgresql
+  database: estagio_bit_production
+  encoding: unicode
+  host: 127.0.0.1
+  password: toor
+  pool: 5
+  port: 5432
+  username: root
+test:
+  adapter: postgresql
+  database: estagio_bit_test
+  encoding: unicode
+  host: 127.0.0.1
+  password: toor
+  pool: 5
+  port: 5432
+  username: root

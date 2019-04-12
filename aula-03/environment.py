@@ -14,19 +14,25 @@ def read_file(filepath):
 def write_file(data, filepath):
     with open(filepath, 'w') as stream:
         if filepath.endswith(".yml"):
-            yaml.dump(data, stream)
+            yaml.dump(data, stream, default_flow_style=False)
         elif filepath.endswith(".json"):
             json.dump(data, stream)
         stream.close()
 
-def write_database_file(filepath):
-    data = {}
-    data["adapter"] = os.environ.get("TEST_ADAPTER")
-    data["encoding"] = os.environ.get("TEST_ENCODING")
-    data["database"] = os.environ.get("TEST_DATABASE")
-    data["pool"] = int(os.environ.get("TEST_POOL"))
-    data["username"] = os.environ.get("TEST_USERNAME")
-    data["password"] = os.environ.get("TEST_PASSWORD")
-    data["port"] = int(os.environ.get("TEST_PORT"))
-    data["host"] = os.environ.get("TEST_HOST")
-    write_file(data, filepath)
+def write_database_file(filepath_prefix, filepath_suffix, environments):
+    var_envs = {
+        "adapter" : os.environ.get("TEST_ADAPTER"),
+        "encoding" : os.environ.get("TEST_ENCODING"),
+        "database" : os.environ.get("TEST_DATABASE"),
+        "pool" : int(os.environ.get("TEST_POOL")),
+        "username" : os.environ.get("TEST_USERNAME"),
+        "password" : os.environ.get("TEST_PASSWORD"),
+        "port" : int(os.environ.get("TEST_PORT")),
+        "host" : os.environ.get("TEST_HOST")
+    }
+    database = {}
+    for env in environments:
+        database[env] = var_envs.copy()
+        database[env]["database"] = "{database}_{environment}".format(environment=env,**var_envs)
+    for suffix in filepath_suffix: 
+        write_file(database, filepath_prefix.format(suffix))

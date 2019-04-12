@@ -58,7 +58,20 @@ class EnvironmentSpec(TestCase):
                 2) o atributo database, deverá ser escrito, concatenando a variável de ambiente correspondente e o environment;
                 3) escrever 1 (um) único caso de teste, capaz de validar a escrita de ambos os arquivos;
         """
-        for end in [".yml",".json"]:
-            write_database_file("conf/database{}".format(end))
-            self.assertTrue(isinstance(read_file("conf/database{}".format(end)), dict))
-        
+        filepath_prefix = "conf/database{}"
+        filepath_suffix = [".yml",".json"]
+        environments = ["development", "production","test"]
+        write_database_file(filepath_prefix, filepath_suffix, environments)
+        for suffix in filepath_suffix:
+            data = read_file(filepath_prefix.format(suffix))    
+            self.assertTrue(isinstance(data, dict))
+            self.assertEqual(environments, sorted(data.keys()))
+            for env in environments:
+                self.assertEqual(os.environ.get("TEST_ADAPTER"), data.get(env).get("adapter"))
+                self.assertEqual("{}_{}".format(os.environ.get("TEST_DATABASE"), env), data.get(env).get("database"))
+                self.assertEqual(os.environ.get("TEST_ENCODING"), data.get(env).get("encoding"))
+                self.assertEqual(os.environ.get("TEST_HOST"), data.get(env).get("host"))
+                self.assertEqual(int(os.environ.get("TEST_POOL")), data.get(env).get("pool"))
+                self.assertEqual(os.environ.get("TEST_PASSWORD"), data.get(env).get("password"))
+                self.assertEqual(int(os.environ.get("TEST_PORT")), data.get(env).get("port"))
+                self.assertEqual(os.environ.get("TEST_USERNAME"), data.get(env).get("username"))
